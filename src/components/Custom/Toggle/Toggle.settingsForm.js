@@ -107,7 +107,8 @@ export default (...extend) => {
             rows: 25,
             weight: 36,
             input: true,
-            placeholder: "Enter your custom JavaScript logic here...",
+            placeholder:
+              "Enter your custom JavaScript logic here... example: data.id==2;",
             tooltip:
               "Enter custom JavaScript logic to handle specific behavior.",
             editor: "ace",
@@ -120,7 +121,8 @@ export default (...extend) => {
             rows: 25,
             weight: 36,
             input: true,
-            placeholder: "Enter your custom JavaScript logic here...",
+            placeholder:
+              "Enter your custom JavaScript logic here...example: item.id==3;",
             tooltip:
               "Enter custom JavaScript logic to handle specific behavior.",
             editor: "ace",

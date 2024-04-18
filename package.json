@@ -1,8 +1,8 @@
 {
   "name": "react-starterkit-app",
   "version": "0.1.0",
+  "homepage": "https://HasanS2024.github.io/FormioTraining",
   "private": true,
-  "homepage": "/react-app-starterkit/#",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
@@ -37,8 +37,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build; cd build; git init; git remote add origin git@github.com:formio/react-app-starterkit.git; git checkout -b gh-pages; git add -A; git commit -m 'Update demo application'; git push -f origin gh-pages;",
-    "prepare": "husky install"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
+    "gh-pages": "^6.1.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.8"
