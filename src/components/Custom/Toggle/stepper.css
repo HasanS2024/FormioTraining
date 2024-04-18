@@ -61,7 +61,8 @@ p.nameselect {
   /* display:flex;
  flex-wrap: nowrap; */
 }
-.circle {
+
+/* .circle {
   width: 18px;
   height: 18px;
   background-color: gray;
@@ -115,7 +116,8 @@ p.nameselect {
   top: 2px;
   left: 25px;
   margin-left: 2px;
-}
+} */
+
 /* .line{
    position: absolute;
    width: 80%;

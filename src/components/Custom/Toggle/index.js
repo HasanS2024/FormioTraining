@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { ReactComponent } from "react-formio";
 import settingsForm from "./Toggle.settingsForm";
@@ -8,8 +8,6 @@ import { useEffect, useState, useCallback } from "react";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 import styled from "styled-jss";
-import "./stepper.css";
-import { margin } from "@mui/system";
 
 const ToggleCustomComp = ({
   apiUrl,
@@ -21,15 +19,18 @@ const ToggleCustomComp = ({
   suffix,
   rtl,
   customLogic2,
-  // circle,
-  // circleselect,leftline,leftlineselect,rightline,rightlineselect
+  circle2,
+  circleselect,
+  leftline,
+  leftlineselect,
+  rightline,
+  rightlineselect,
 }) => {
-  // console.log("circlecircle",circle)
+  // console.log("circlecircle", circle2);
   const [states, setStates] = useState([]);
-  // const [selectedIds, setSelectedIds] = useState([]);
-  const [selected, setSelected] = React.useState([]);
+  const [selected, setSelected] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
-  console.log("selectedIdsselectedIds", selectedIds);
+  // console.log("selectedIdsselectedIds", selectedIds);
   const RTL = rtl;
   const onWheelHandler = useCallback(
     (apiObj, ev) => onWheel(apiObj, ev, RTL),
@@ -96,61 +97,17 @@ const ToggleCustomComp = ({
     }
   };
 
-  // const handleParagraphClick = (itemId) => {
-  //   console.log("handleParagraphClick");
-  //   console.log("itemId", itemId);
-  //   console.log("cond", {cond});
-  //   if(typeof cond  === "function" && states.length > 0){
-
-  //     if (true) {
-  //       setSelectedIds([...selectedIds, 8]);
-  //       return true;
-  //       // console.log("cond is true");
-  //     } else {
-  //       return false;
-  //       // console.log("cond is false");
-  //     }
-
-  //   }};
-  //   // if (cond) {
-  //   //   setSelectedIds([...selectedIds, itemId]);
-  //   //   return true;
-  //   //   // console.log("cond is true");
-  //   // } else {
-  //   //   return false;
-  //   //   // console.log("cond is false");
-  //   // }
-  // };
-
   useEffect(() => {
     if (states.length > 0) {
-      // const x="item.id === 1 || item.id === 2 || item.id === 3";
       const x = customLogic2;
-      console.log("x", x);
-      console.log("states", states.find((item) => item.id === 5).id);
-      console.log(
-        "states.filter(item => item.id === 10 || item.id === 9 || item.id === 8).map(item => item.id)",
-        states
-          .filter((item) => item.id === 10 || item.id === 9 || item.id === 8)
-          .map((item) => item.id)
-      );
-      console.log("states2", states.find((item) => eval(x)).id);
 
-      if (true) {
-        // setSelectedIds([...selectedIds, states.find(item => eval(x)).id]);
-        // setSelectedIds([...selectedIds, states.filter(item => item.id === 1 || item.id === 2 || item.id === 3).map(item => item.id)]);
-        const arr = states.filter((item) => eval(x)).map((item) => item.id);
-        console.log("arr", arr);
+      const arr = states.filter((item) => eval(x)).map((item) => item.id);
+      console.log("arr", arr);
 
-        arr.forEach((item2) => {
-          console.log("item", item2);
-          setSelectedIds((prevSelectedIds) => [...prevSelectedIds, item2]);
-        });
-        console.log("selectedIds2", selectedIds);
-        return true;
-      } else {
-        return false;
-      }
+      arr.forEach((item2) => {
+        console.log("item", item2);
+        setSelectedIds((prevSelectedIds) => [...prevSelectedIds, item2]);
+      });
     }
   }, [states]);
 
@@ -173,16 +130,21 @@ const ToggleCustomComp = ({
     itemId,
     customStyle,
     long,
-    // circle,circleselect,leftline,leftlineselect,rightline,rightlineselect
+    circle2,
+    circleselect,
+    leftline,
+    leftlineselect,
+    rightline,
+    rightlineselect,
   }) {
-    const circleClass = selectedIds.includes(itemId) ? "selected" : "circle";
+    const circleClass = selectedIds.includes(itemId) ? circleselect : circle2;
     const lineLeftClass = selectedIds.includes(itemId)
-      ? "lineLeftselect"
-      : "lineLeft";
+      ? leftlineselect
+      : leftline;
     const lineRightClass = selectedIds.includes(itemId)
-      ? "lineRightselect"
-      : "lineRight";
-    // console.log("circleselect",circleselect);
+      ? rightlineselect
+      : rightline;
+    console.log("circleselect", circleselect);
     return (
       <CardBody
         data-cy={itemId}
@@ -193,40 +155,40 @@ const ToggleCustomComp = ({
         long={long}
         // cond={cond}
       >
-        <ul className="apiexample">
+        <div className="apiexample">
           {itemId === 1 && (
-            <li className="parent">
-              {/* {selectedIds}
-             {selectedIds.includes(itemId)?"{circleselect} ":"{circle}"} */}
-              {/* <p className={selectedIds.includes(itemId) ? {circleselect} : {circle}}> 1111111111111111111</p> */}
-              {/* {console.log("selectedIds.includes(itemId)",selectedIds)} */}
-              {/* {console.log("circleselect 111",circleselect)} */}
-              {/* {console.log("selectedIds.includes(itemId) 222 ",selectedIds.includes(itemId))} */}
-              {/* {console.log("circle 333 ",circle)} */}
+            <div className="parent">
+              {/* {console.log("selectedIds.includes(itemId)", selectedIds)}
+              {console.log("circleselect 111", circleselect)}
+              {console.log(
+                "selectedIds.includes(itemId) 222 ",
+                selectedIds.includes(itemId)
+              )}
+              {console.log("circle 333 ", circle2)} */}
               <p className={circleClass}></p>
               <p className={lineRightClass}></p>
               <p className="name"> {title} </p>
-            </li>
+            </div>
           )}
 
           {itemId !== 1 && itemId !== long && (
-            <li className="parent">
+            <div className="parent">
               <p className={lineLeftClass}></p>
               <p className={circleClass}> </p>
               <p className={lineRightClass}></p>
 
               <p className="name"> {title} </p>
-            </li>
+            </div>
           )}
           {itemId === long && (
-            <li className="parent">
+            <div className="parent">
               <p className={lineLeftClass}></p>
               <p className={circleClass}> </p>
 
               <p className="name"> {title} </p>
-            </li>
+            </div>
           )}
-        </ul>
+        </div>
       </CardBody>
     );
   }
@@ -269,12 +231,12 @@ const ToggleCustomComp = ({
             //
             meetsDynamicCondition(state) && (
               <Card
-                // circle={circle}
-                // circleselect={circleselect}
-                // leftline={leftline}
-                // leftlineselect={leftlineselect}
-                // rightline={rightline}
-                // rightlineselect={rightlineselect}
+                circle2={circle2}
+                circleselect={circleselect}
+                leftline={leftline}
+                leftlineselect={leftlineselect}
+                rightline={rightline}
+                rightlineselect={rightlineselect}
                 customStyle={customStyle}
                 title={i18next.t(state[displayKey])}
                 itemId={state.id}
@@ -359,7 +321,6 @@ function LeftArrow({ RTL, text1, text2 }) {
 function RightArrow({ RTL, text1, text2 }) {
   const visibility = React.useContext(VisibilityContext);
   const isLastItemVisible = visibility.useIsVisible("last", true);
-  // const isLastItemVisible = visibility.useIsVisible("first", true);
 
   return (
     <Arrow
@@ -444,16 +405,11 @@ export default class Toggle extends ReactComponent {
     const dynamicCondition = (data) => {
       return eval(customLogic);
     };
-    // const condition = (data) => {
-    //   return eval(customLogic2);
-    // };
     const condition = (data) => {
       return data.id === 9;
     };
     const translateButton = this.component.translateButton;
     const rtl = this.component.rtlButton;
-
-    // const customStyle3 = { backgroundColor: "transparent", color: "#666" };
 
     let x = document.getElementById(this.component.id);
     let headElement = document.createElement("head");
@@ -471,17 +427,15 @@ export default class Toggle extends ReactComponent {
         comp={this}
         prefix={<i class={this.component.prefix}></i>}
         suffix={<i class={this.component.suffix}></i>}
-        // customStyle={this.component.customStyleForStep}
         customStyle={this.component.customStyleForStep}
         rtl={rtl}
-        // cond={condition}
         customLogic2={customLogic2}
-        // circle="circle"
-        // circleselect={this.component.circleselect}
-        // leftline={this.component.leftline}
-        // leftlineselect={this.component.leftlineselect}
-        // rightline={this.component.rightline}
-        // rightlineselect={this.component.rightlineselect}
+        circle2={this.component.circle}
+        circleselect={this.component.circleselect}
+        leftline={this.component.leftline}
+        leftlineselect={this.component.leftlineselect}
+        rightline={this.component.rightline}
+        rightlineselect={this.component.rightlineselect}
       />,
       element
     );
