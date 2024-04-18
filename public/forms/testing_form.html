@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript">
+      function loadFormio() {
+        function getTaskId() {
+          // console.log("123456787hggdd", window.location.search.charAt(0));
+          var results = new RegExp("[\?&]task=([^&#]*)").exec(
+            window.location.href
+          );
+          if (results == null) {
+            return null;
+          }
+          return decodeURI(results[1]) || 0;
+        }
+
+        try {
+          var storedPages = JSON.parse(localStorage.getItem("navigation"));
+          if (Array.isArray(storedPages)) {
+            let path = window.location.pathname.split("/");
+            let currentPage = path[path.length - 1];
+
+            if (
+              storedPages.filter((e) => e.currentPage === currentPage).length >
+              0
+            ) {
+              const index = storedPages.findIndex(
+                (e) => e.currentPage === currentPage
+              );
+              if (index > -1) {
+                storedPages.splice(index, 1);
+              }
+            }
+
+            storedPages = [
+              { currentPage, link: window.location.href },
+              ...storedPages,
+            ];
+
+            localStorage.setItem("navigation", JSON.stringify(storedPages));
+          } else {
+            localStorage.setItem("navigation", JSON.stringify([]));
+          }
+        } catch (e) {
+          localStorage.setItem("navigation", JSON.stringify([]));
+        }
+        Formio.createForm(
+          document.getElementById("formio"),
+          {
+            components: [
+              {
+                label: "Password",
+                labelPosition: "top",
+                placeholder: "",
+                description: "",
+                tooltip: "",
+                prefix: "",
+                suffix: "",
+                widget: {
+                  type: "input",
+                },
+                displayMask: "",
+                applyMaskOn: "change",
+                customClass: "",
+                tabindex: "",
+                autocomplete: "",
+                hidden: false,
+                hideLabel: false,
+                showWordCount: false,
+                showCharCount: false,
+                autofocus: false,
+                spellcheck: true,
+                disabled: false,
+                tableView: false,
+                modalEdit: false,
+                case: "",
+                truncateMultipleSpaces: false,
+                redrawOn: "",
+                clearOnHide: true,
+                calculateServer: false,
+                allowCalculateOverride: false,
+                validateOn: "change",
+                validate: {
+                  required: false,
+                  pattern: "",
+                  customMessage: "",
+                  custom:
+                    "valid = (input === '12345') ? true : 'Your password must be \"12345\"';",
+                  customPrivate: false,
+                  json: "",
+                  minLength: "",
+                  maxLength: "",
+                  strictDateValidation: false,
+                  multiple: false,
+                  unique: false,
+                },
+                errorLabel: "",
+                errors: "",
+                key: "password",
+                tags: [],
+                properties: {},
+                conditional: {
+                  show: null,
+                  when: null,
+                  eq: "",
+                  json: "",
+                },
+                customConditional: "",
+                logic: [],
+                attributes: {},
+                overlay: {
+                  style: "",
+                  page: "",
+                  left: "",
+                  top: "",
+                  width: "",
+                  height: "",
+                },
+                type: "password",
+                input: true,
+                multiple: false,
+                defaultValue: null,
+                protected: true,
+                unique: false,
+                persistent: true,
+                refreshOn: "",
+                dataGridLabel: false,
+                dbIndex: false,
+                customDefaultValue: "",
+                calculateValue: "",
+                encrypted: false,
+                allowMultipleMasks: false,
+                addons: [],
+                mask: false,
+                inputType: "text",
+                inputFormat: "plain",
+                inputMask: "",
+                id: "ecnm1co",
+              },
+              {
+                label: "confirm",
+                labelPosition: "top",
+                placeholder: "",
+                description: "",
+                tooltip: "",
+                prefix: "",
+                suffix: "",
+                widget: {
+                  type: "input",
+                },
+                displayMask: "",
+                applyMaskOn: "change",
+                customClass: "",
+                tabindex: "",
+                autocomplete: "",
+                hidden: false,
+                hideLabel: false,
+                showWordCount: false,
+                showCharCount: false,
+                autofocus: false,
+                spellcheck: true,
+                disabled: false,
+                tableView: false,
+                modalEdit: false,
+                case: "",
+                truncateMultipleSpaces: false,
+                redrawOn: "",
+                clearOnHide: true,
+                calculateServer: false,
+                allowCalculateOverride: false,
+                validateOn: "change",
+                validate: {
+                  required: true,
+                  pattern: "",
+                  customMessage: "",
+                  custom:
+                    "valid = (input === data.password) ? true : 'Your password is faild';",
+                  customPrivate: false,
+                  json: "",
+                  minLength: "",
+                  maxLength: "",
+                  strictDateValidation: false,
+                  multiple: false,
+                  unique: false,
+                },
+                errorLabel: "",
+                errors: "",
+                key: "confirm",
+                tags: [],
+                properties: {},
+                conditional: {
+                  show: null,
+                  when: null,
+                  eq: "",
+                  json: "",
+                },
+                customConditional: "",
+                logic: [],
+                attributes: {},
+                overlay: {
+                  style: "",
+                  page: "",
+                  left: "",
+                  top: "",
+                  width: "",
+                  height: "",
+                },
+                type: "password",
+                input: true,
+                protected: true,
+                multiple: false,
+                defaultValue: null,
+                unique: false,
+                persistent: true,
+                refreshOn: "",
+                dataGridLabel: false,
+                dbIndex: false,
+                customDefaultValue: "",
+                calculateValue: "",
+                encrypted: false,
+                allowMultipleMasks: false,
+                addons: [],
+                mask: false,
+                inputType: "text",
+                inputFormat: "plain",
+                inputMask: "",
+                id: "e0eqvs",
+              },
+              {
+                label: "Select idpost",
+                labelPosition: "top",
+                widget: "choicesjs",
+                placeholder: "",
+                description: "",
+                tooltip: "",
+                customClass: "",
+                tabindex: "",
+                hidden: false,
+                hideLabel: false,
+                uniqueOptions: false,
+                autofocus: false,
+                disabled: false,
+                tableView: true,
+                modalEdit: false,
+                multiple: false,
+                dataSrc: "url",
+                data: {
+                  values: [
+                    {
+                      label: "",
+                      value: "",
+                    },
+                  ],
+                  resource: "",
+                  url: "https://jsonplaceholder.typicode.com/posts",
+                  json: "",
+                  headers: [
+                    {
+                      key: "",
+                      value: "",
+                    },
+                  ],
+                  custom: "",
+                },
+                dataType: "",
+                idPath: "id",
+                valueProperty: "id",
+                template: "<span>{{ item.id }}</span>",
+                refreshOn: "",
+                refreshOnBlur: "",
+                clearOnRefresh: false,
+                searchEnabled: true,
+                selectThreshold: 0.3,
+                readOnlyValue: false,
+                customOptions: {},
+                useExactSearch: false,
+                persistent: true,
+                protected: false,
+                dbIndex: false,
+                encrypted: false,
+                clearOnHide: true,
+                customDefaultValue: "",
+                calculateValue: "",
+                calculateServer: false,
+                allowCalculateOverride: false,
+                validateOn: "change",
+                validate: {
+                  required: false,
+                  onlyAvailableItems: false,
+                  customMessage: "",
+                  custom: "",
+                  customPrivate: false,
+                  json: "",
+                  strictDateValidation: false,
+                  multiple: false,
+                  unique: false,
+                },
+                unique: false,
+                errorLabel: "",
+                errors: "",
+                key: "selectPost",
+                tags: [],
+                properties: {},
+                conditional: {
+                  show: null,
+                  when: null,
+                  eq: "",
+                  json: "",
+                },
+                customConditional: 'console.log("data" , data)',
+                logic: [],
+                attributes: {},
+                overlay: {
+                  style: "",
+                  page: "",
+                  left: "",
+                  top: "",
+                  width: "",
+                  height: "",
+                },
+                type: "select",
+                indexeddb: {
+                  filter: {},
+                },
+                lazyLoad: true,
+                selectFields: "",
+                disableLimit: false,
+                searchField: "",
+                searchDebounce: 0.3,
+                minSearch: 0,
+                filter: "",
+                limit: 100,
+                noRefreshOnScroll: false,
+                authenticate: false,
+                ignoreCache: false,
+                redrawOn: "",
+                input: true,
+                prefix: "",
+                suffix: "",
+                dataGridLabel: false,
+                showCharCount: false,
+                showWordCount: false,
+                allowMultipleMasks: false,
+                addons: [],
+                fuseOptions: {
+                  include: "score",
+                  threshold: 0.3,
+                },
+                id: "ee9crv",
+                defaultValue: "",
+                selectValues: "",
+                sort: "",
+              },
+              {
+                label: "Select username",
+                labelPosition: "top",
+                widget: "choicesjs",
+                placeholder: "",
+                description: "",
+                tooltip: "",
+                customClass: "",
+                tabindex: "",
+                hidden: false,
+                hideLabel: false,
+                uniqueOptions: false,
+                autofocus: false,
+                disabled: false,
+                tableView: true,
+                modalEdit: false,
+                multiple: false,
+                dataSrc: "url",
+                data: {
+                  values: [
+                    {
+                      label: "",
+                      value: "",
+                    },
+                  ],
+                  resource: "",
+                  url: "https://jsonplaceholder.typicode.com/users",
+                  json: "",
+                  headers: [
+                    {
+                      key: "",
+                      value: "",
+                    },
+                  ],
+                  custom: "",
+                },
+                dataType: "",
+                idPath: "id",
+                valueProperty: "name",
+                template: "<span>{{ item.name }}</span>",
+                refreshOn: "",
+                refreshOnBlur: "",
+                clearOnRefresh: false,
+                searchEnabled: true,
+                selectThreshold: 0.3,
+                readOnlyValue: false,
+                customOptions: {},
+                useExactSearch: false,
+                persistent: true,
+                protected: false,
+                dbIndex: false,
+                encrypted: false,
+                clearOnHide: true,
+                customDefaultValue: "",
+                calculateValue: "",
+                calculateServer: false,
+                allowCalculateOverride: false,
+                validateOn: "change",
+                validate: {
+                  required: false,
+                  onlyAvailableItems: false,
+                  customMessage: "",
+                  custom: "",
+                  customPrivate: false,
+                  json: "",
+                  strictDateValidation: false,
+                  multiple: false,
+                  unique: false,
+                },
+                unique: false,
+                errorLabel: "",
+                errors: "",
+                key: "selectPost1",
+                tags: [],
+                properties: {},
+                conditional: {
+                  show: null,
+                  when: null,
+                  eq: "",
+                  json: "",
+                },
+                customConditional: "",
+                logic: [],
+                attributes: {},
+                overlay: {
+                  style: "",
+                  page: "",
+                  left: "",
+                  top: "",
+                  width: "",
+                  height: "",
+                },
+                type: "select",
+                indexeddb: {
+                  filter: {},
+                },
+                lazyLoad: true,
+                selectFields: "",
+                disableLimit: false,
+                searchField: "",
+                searchDebounce: 0.3,
+                minSearch: 0,
+                filter: "",
+                limit: 100,
+                noRefreshOnScroll: false,
+                authenticate: false,
+                ignoreCache: false,
+                redrawOn: "",
+                input: true,
+                prefix: "",
+                suffix: "",
+                dataGridLabel: false,
+                showCharCount: false,
+                showWordCount: false,
+                allowMultipleMasks: false,
+                addons: [],
+                fuseOptions: {
+                  include: "score",
+                  threshold: 0.3,
+                },
+                id: "ere04p",
+                defaultValue: "",
+                selectValues: "",
+                sort: "",
+              },
+              {
+                type: "button",
+                label: "Submit",
+                key: "submit",
+                size: "md",
+                block: false,
+                action: "submit",
+                disableOnInvalid: true,
+                theme: "primary",
+                id: "espo6jp",
+                input: true,
+                placeholder: "",
+                prefix: "",
+                customClass: "",
+                suffix: "",
+                multiple: false,
+                defaultValue: null,
+                protected: false,
+                unique: false,
+                persistent: false,
+                hidden: false,
+                clearOnHide: true,
+                refreshOn: "",
+                redrawOn: "",
+                tableView: false,
+                modalEdit: false,
+                dataGridLabel: true,
+                labelPosition: "top",
+                description: "",
+                errorLabel: "",
+                tooltip: "",
+                hideLabel: false,
+                tabindex: "",
+                disabled: false,
+                autofocus: false,
+                dbIndex: false,
+                customDefaultValue: "",
+                calculateValue: "",
+                calculateServer: false,
+                widget: {
+                  type: "input",
+                },
+                attributes: {},
+                validateOn: "change",
+                validate: {
+                  required: false,
+                  custom: "",
+                  customPrivate: false,
+                  strictDateValidation: false,
+                  multiple: false,
+                  unique: false,
+                },
+                conditional: {
+                  show: null,
+                  when: null,
+                  eq: "",
+                },
+                overlay: {
+                  style: "",
+                  left: "",
+                  top: "",
+                  width: "",
+                  height: "",
+                },
+                allowCalculateOverride: false,
+                encrypted: false,
+                showCharCount: false,
+                showWordCount: false,
+                properties: {},
+                allowMultipleMasks: false,
+                addons: [],
+                leftIcon: "",
+                rightIcon: "",
+              },
+            ],
+          },
+          {
+            sanitizeConfig: {
+              addTags: ["iframe"],
+              ALLOWED_TAGS: ["iframe"],
+              "X-Frame-Options": "allow",
+            },
+            language: "ar",
+          }
+        ).then(function (form) {
+          form.root.loading = true;
+          Formio.fetch(`/engine-rest/task/` + getTaskId(), {
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            mode: "cors",
+          })
+            .then(function (res1) {
+              res1.json().then(function (result) {
+                const taskData = result;
+                Formio.fetch("/engine-rest/variable-instance", {
+                  body: JSON.stringify({
+                    processInstanceIdIn: [result.processInstanceId],
+                  }),
+                  headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                  method: "POST",
+                  mode: "cors",
+                })
+                  .then(function (response) {
+                    response.json().then(function (result) {
+                      console.log("taskDatammmmmmm: ", taskData);
+                      console.log("responsemmmmmmm: ", response);
+                      console.log("resultmmmmmmm: ", result);
+                      console.log("response.json()mmmmmmm: ", response.json());
+                      try {
+                        var variables = {};
+                        result.map((item, index) => {
+                          try {
+                            variables = {
+                              ...variables,
+                              [item.name]: item.value,
+                            };
+                          } catch (e) {
+                            variables = {
+                              ...variables,
+                              [item.name]: item.value,
+                            };
+                          }
+                        });
+                      } catch (e) {}
+
+                      try {
+                        console.log("testttttttjaaa_variables", variables);
+                        var submission = {
+                          data: {
+                            ...variables,
+                            taskData: taskData,
+                            taskId: getTaskId(),
+                            formContainer: {
+                              ...variables.formContainer,
+                              fatwasContainer: { answer: {} },
+                            },
+                            // formContainer: {
+                            //   info: { ...variables.info },
+                            // },
+                          },
+                        };
+                        // delete submission.data.info;
+                        // submission["data"]["formContainer"]["info"] = {
+                        //   test: "jaafar",
+                        // };
+                        form.submission = submission;
+                        form.root.loading = false;
+                        console.log("testttttttjaaa", submission);
+                      } catch (e) {}
+                    });
+                  })
+                  .catch((error) => {
+                    console.log(" errorrr", error);
+                    form.root.loading = false;
+                  });
+              });
+            })
+            .catch((error) => {
+              form.root.loading = false;
+            });
+          form.on("error", (error) => {});
+
+          form.on("formLoad", (formLoad) => {});
+
+          form.on("submitError", (submitError) => {});
+
+          form.on("render", (render) => {});
+
+          form.on("initialized", (initialized) => {});
+
+          form.on("requestDone", (requestDoneMsg) => {});
+
+          form.on("languageChanged", (languageChanged) => {});
+
+          form.on("saveDraftBegin", (saveDraftBegin) => {});
+
+          form.on("saveDraft", (saveDraft) => {});
+          form.on("restoreDraft", (restoreDraft) => {});
+          form.on("submissionDeleted", (submissionDeleted) => {});
+          form.on("redraw", (redraw) => {});
+          form.on("focus", (focus) => {});
+
+          form.on("blur", (blur) => {});
+          form.on("componentChanged", (componentChanged) => {});
+
+          form.on("submitButton", (submitButton) => {});
+
+          form.on("customEvent", (customEvent) => {});
+
+          form.on("editGridAddRow", (editGridAddRow) => {});
+
+          form.on("editGridSaveRow", (editGridSaveRow) => {});
+
+          form.on("editGridDeleteRow", (editGridDeleteRow) => {});
+
+          form.on("fileUploadingStart", (fileUploadingStart) => {});
+
+          form.on("fileUploadingEnd", (fileUploadingEnd) => {});
+
+          form.on("rowAdd", (rowAdd) => {});
+
+          form.on("formLoad", (formLoad) => {});
+          form.on("change", (data) => {});
+          form.on("submitDone", (submitDone) => {});
+
+          form.on("rowAdded", (rowAdded) => {});
+
+          form.on("rowEdit", (rowEdit) => {});
+
+          form.on("rowEdited", (rowEdited) => {});
+
+          form.on("rowDelete", (rowDelete) => {});
+
+          form.on("rowClick", (rowClick) => {});
+
+          form.on("rowSelectChange", (rowSelectChange) => {});
+
+          form.on("rowAdd", (rowAdd) => {});
+
+          form.on("rowAdd", (rowAdd) => {});
+
+          form.on("checkValidity", (rowAdd) => {});
+
+          try {
+            var languages = { ar: true };
+
+            let lang = localStorage.getItem("lang");
+            if (languages[lang]) {
+              document
+                .getElementById("formio")
+                .setAttribute("dir", form.i18next.dir(lang));
+
+              return (form.language = lang);
+            }
+
+            form.language = lang;
+
+            document
+              .getElementById("formio")
+              .setAttribute("dir", form.i18next.dir(lang));
+          } catch (e) {}
+        });
+      }
+
+      window.onload = loadFormio();
+    </script>
+  </head>
+  <body>
+    <form id="formio"></form>
+  </body>
+</html>

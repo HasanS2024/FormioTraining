@@ -1,0 +1,135 @@
+.apiexample {
+  /* background-color: red; */
+  background-color: transparent;
+  height: inherit;
+  padding: 0 0 0 30px;
+  color: inherit;
+  /* width: ; */
+  /* box-sizing: border-box; */
+}
+/* .fetch{
+  background-color:green;
+  display:flex;
+   flex-wrap: nowrap;
+   overflow: auto;
+   gap: 2px;
+ } */
+.parent {
+  width: 100%;
+
+  min-width: fit-content;
+  /* width: 150px; */
+  padding: 10px;
+  margin: 10px 0 0 0;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  position: relative;
+  left: -30px;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../Montserrat_Arabic/Montserrat-Arabic\ Regular\ 400.otf")
+    format("truetype");
+}
+p.name {
+  min-width: fit-content;
+  width: 100%;
+  font-family: "Montserrat, Courier, monospace";
+  white-space: nowrap;
+  /* background-color:#fff; */
+  font-size: 15px;
+  margin: 7px 5px 0 0;
+  display: block;
+  margin: 5px auto 0 auto;
+  /* color:rgba(0, 0, 0, 0.616); */
+  color: inherit;
+  /* display:flex;
+flex-wrap: nowrap; */
+}
+p.nameselect {
+  min-width: fit-content;
+  width: 100%;
+  font-family: "Montserrat, Courier, monospace";
+  white-space: nowrap;
+  background-color: #fff;
+  font-size: 18px;
+  margin: 7px 5px 0 0;
+  display: block;
+  margin: 5px auto 0 auto;
+  color: rgba(0, 0, 0, 0.616);
+  /* display:flex;
+ flex-wrap: nowrap; */
+}
+.circle {
+  width: 18px;
+  height: 18px;
+  background-color: gray;
+  border-radius: 100%;
+  position: absolute;
+  top: -5px;
+  left: 3;
+}
+.selected {
+  width: 18px;
+  height: 18px;
+  background-color: red;
+  border-radius: 100%;
+  position: absolute;
+  top: -5px;
+  left: 3;
+}
+
+.lineLeft {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: gray;
+  top: 2px;
+  left: -25px;
+  margin-left: 2px;
+}
+.lineLeftselect {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  top: 2px;
+  left: -25px;
+  margin-left: 2px;
+}
+.lineRight {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: gray;
+  top: 2px;
+  left: 25px;
+  margin-left: 2px;
+}
+.lineRightselect {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  top: 2px;
+  left: 25px;
+  margin-left: 2px;
+}
+/* .line{
+   position: absolute;
+   width: 80%;
+   height: 2px;
+   background-color: green;
+   top :0;
+   left: 15px;
+ } */
+.lineselect {
+  position: absolute;
+  width: 80%;
+  height: 3px;
+  background-color: rgb(235, 21, 21);
+  top: 0;
+  left: 35px;
+  margin-left: 2px;
+}

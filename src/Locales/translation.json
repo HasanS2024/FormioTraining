@@ -1,0 +1,12 @@
+{
+  "ar": {
+    "hello": "مرحبا",
+    "goodbye": "وداعا",
+    "Bret": "حسن"
+  },
+  "en": {
+    "hello": "Hello",
+    "goodbye": "goodbye",
+    "Bret": "Bret"
+  }
+}
