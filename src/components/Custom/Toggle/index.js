@@ -25,12 +25,14 @@ const ToggleCustomComp = ({
   leftlineselect,
   rightline,
   rightlineselect,
+  cond,
+  order,
 }) => {
-  // console.log("circlecircle", circle2);
   const [states, setStates] = useState([]);
   const [selected, setSelected] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
-  // console.log("selectedIdsselectedIds", selectedIds);
+  const [lastStates, setLastStates] = useState([]);
+
   const RTL = rtl;
   const onWheelHandler = useCallback(
     (apiObj, ev) => onWheel(apiObj, ev, RTL),
@@ -48,6 +50,19 @@ const ToggleCustomComp = ({
         .catch((error) => console.error("Error fetching data:", error));
     }
   }, [apiUrl]);
+
+  useEffect(() => {
+    if (states.length > 0) {
+      states.map((state) => {
+        if (eval(cond)) {
+          return eval(order);
+        }
+        return state;
+      });
+    }
+  }, [states, cond, order]);
+
+  console.log("states", states);
 
   const dragState = React.useRef(new DragDealer());
 
@@ -98,14 +113,22 @@ const ToggleCustomComp = ({
   };
 
   useEffect(() => {
+    const filteredStates = states.filter((state) =>
+      meetsDynamicCondition(state)
+    );
+    setLastStates(filteredStates);
+  }, [states]);
+
+  // console.log("lastStates", lastStates);
+
+  // تابع النشاط
+  useEffect(() => {
     if (states.length > 0) {
       const x = customLogic2;
 
       const arr = states.filter((item) => eval(x)).map((item) => item.id);
-      console.log("arr", arr);
 
       arr.forEach((item2) => {
-        console.log("item", item2);
         setSelectedIds((prevSelectedIds) => [...prevSelectedIds, item2]);
       });
     }
@@ -144,33 +167,26 @@ const ToggleCustomComp = ({
     const lineRightClass = selectedIds.includes(itemId)
       ? rightlineselect
       : rightline;
-    console.log("circleselect", circleselect);
+    console.log("states2", states);
+    console.log("lastStates2", lastStates);
+    console.log("long", long);
     return (
       <CardBody
         data-cy={itemId}
         data-testid="card"
         role="button"
         tabIndex={0}
-        className={customStyle}
-        long={long}
-        // cond={cond}
+        className="card"
+        // long={long}
       >
-        <div className="apiexample">
+        {/* <div className="apiexample">
           {itemId === 1 && (
             <div className="parent">
-              {/* {console.log("selectedIds.includes(itemId)", selectedIds)}
-              {console.log("circleselect 111", circleselect)}
-              {console.log(
-                "selectedIds.includes(itemId) 222 ",
-                selectedIds.includes(itemId)
-              )}
-              {console.log("circle 333 ", circle2)} */}
               <p className={circleClass}></p>
               <p className={lineRightClass}></p>
               <p className="name"> {title} </p>
             </div>
           )}
-
           {itemId !== 1 && itemId !== long && (
             <div className="parent">
               <p className={lineLeftClass}></p>
@@ -188,6 +204,20 @@ const ToggleCustomComp = ({
               <p className="name"> {title} </p>
             </div>
           )}
+        </div>
+            */}
+
+        {/* states.find((state) => (state.id===1).id )=== 1 */}
+
+        {/* بدون شرط */}
+        <div className="apiexample">
+          <div className="parent">
+            <p className={circleClass}></p>
+            <p className={lineRightClass}></p>
+            <p className={lineLeftClass}></p>
+
+            <p className="name"> {title} </p>
+          </div>
         </div>
       </CardBody>
     );
@@ -225,27 +255,29 @@ const ToggleCustomComp = ({
         onWheel={onWheelHandler}
         RTL={RTL}
         noPolyfill={true}
+        scrollContainerClassName="customScroll"
       >
-        {states.map(
-          (state) =>
+        {lastStates.map(
+          (state) => (
             //
-            meetsDynamicCondition(state) && (
-              <Card
-                circle2={circle2}
-                circleselect={circleselect}
-                leftline={leftline}
-                leftlineselect={leftlineselect}
-                rightline={rightline}
-                rightlineselect={rightlineselect}
-                customStyle={customStyle}
-                title={i18next.t(state[displayKey])}
-                itemId={state.id}
-                key={state.id}
-                onClick={() => handleItemClick(state.id)}
-                selected={isItemSelected(state.id)}
-                long={states.length}
-              />
-            )
+            // meetsDynamicCondition(state) && (
+            <Card
+              circle2={circle2}
+              circleselect={circleselect}
+              leftline={leftline}
+              leftlineselect={leftlineselect}
+              rightline={rightline}
+              rightlineselect={rightlineselect}
+              customStyle={customStyle}
+              title={i18next.t(state[displayKey])}
+              itemId={state.id}
+              key={state.id}
+              onClick={() => handleItemClick(state.id)}
+              selected={isItemSelected(state.id)}
+              long={lastStates.length}
+            />
+          )
+          // )
         )}
       </ScrollMenu>
     </NoScrollbar>
@@ -399,15 +431,16 @@ export default class Toggle extends ReactComponent {
     const customLogic = this.component.customLogic;
     const customLogic2 = this.component.customLogic2;
 
+    const cond = this.component.cond;
+    const order = this.component.order;
+
     const data = this.component;
     const apiUrl = this.component.dataApiLink;
     const displayKey = this.component.customUrl;
     const dynamicCondition = (data) => {
       return eval(customLogic);
     };
-    const condition = (data) => {
-      return data.id === 9;
-    };
+
     const translateButton = this.component.translateButton;
     const rtl = this.component.rtlButton;
 
@@ -436,6 +469,8 @@ export default class Toggle extends ReactComponent {
         leftlineselect={this.component.leftlineselect}
         rightline={this.component.rightline}
         rightlineselect={this.component.rightlineselect}
+        cond={this.component.cond}
+        order={this.component.order}
       />,
       element
     );

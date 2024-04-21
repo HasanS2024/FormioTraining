@@ -99,7 +99,30 @@ export default (...extend) => {
             input: true,
             placeholder: "Enter your custom class here...",
           },
-
+          {
+            key: "cond",
+            type: "textarea",
+            label: "Custom JavaScript Logic For Condition Replaced ",
+            rows: 25,
+            weight: 36,
+            input: true,
+            placeholder:
+              "Enter your custom JavaScript logic here... example: state.id == 1 || state.id == 5",
+            editor: "ace",
+            as: "javascript",
+          },
+          {
+            key: "order",
+            type: "textarea",
+            label: "Custom JavaScript Logic For Replaced Element",
+            rows: 25,
+            weight: 36,
+            input: true,
+            placeholder:
+              "Enter your custom JavaScript logic here... example:  state.username  = 'John'",
+            editor: "ace",
+            as: "javascript",
+          },
           {
             key: "customLogic",
             type: "textarea",
@@ -128,6 +151,7 @@ export default (...extend) => {
             editor: "ace",
             as: "javascript",
           },
+
           {
             key: "customStyle",
             type: "textarea",

@@ -24,8 +24,28 @@
   display: inline-flex;
   flex-wrap: nowrap;
   position: relative;
-  left: -30px;
+  left: -20px;
 }
+
+.customScroll:first-child {
+  background-color: rgb(109, 196, 38);
+}
+/* .react-horizontal-scrolling-menu--item:first-child .lineLeft{
+  opacity:0;
+
+}
+.react-horizontal-scrolling-menu--item:last-child .lineRight{
+  opacity:0;
+
+}
+.react-horizontal-scrolling-menu--item:first-child .lineLeftselect{
+  opacity:0;
+
+}
+.react-horizontal-scrolling-menu--item:last-child .lineRightselect{
+  opacity:0;
+
+} */
 
 @font-face {
   font-family: "Montserrat";
