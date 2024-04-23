@@ -8,7 +8,7 @@ import { useEffect, useState, useCallback } from "react";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 import styled from "styled-jss";
-
+import evaluator from "./CustomEvaluator";
 const ToggleCustomComp = ({
   apiUrl,
   displayKey,
@@ -27,6 +27,9 @@ const ToggleCustomComp = ({
   rightlineselect,
   cond,
   order,
+  data,
+  instance,
+  form,
 }) => {
   const [states, setStates] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -55,14 +58,11 @@ const ToggleCustomComp = ({
     if (states.length > 0) {
       states.map((state) => {
         if (eval(cond)) {
-          return eval(order);
+          eval(order);
         }
-        return state;
       });
     }
   }, [states, cond, order]);
-
-  console.log("states", states);
 
   const dragState = React.useRef(new DragDealer());
 
@@ -119,8 +119,6 @@ const ToggleCustomComp = ({
     setLastStates(filteredStates);
   }, [states]);
 
-  // console.log("lastStates", lastStates);
-
   // تابع النشاط
   useEffect(() => {
     if (states.length > 0) {
@@ -167,9 +165,7 @@ const ToggleCustomComp = ({
     const lineRightClass = selectedIds.includes(itemId)
       ? rightlineselect
       : rightline;
-    console.log("states2", states);
-    console.log("lastStates2", lastStates);
-    console.log("long", long);
+
     return (
       <CardBody
         data-cy={itemId}
@@ -177,38 +173,7 @@ const ToggleCustomComp = ({
         role="button"
         tabIndex={0}
         className="card"
-        // long={long}
       >
-        {/* <div className="apiexample">
-          {itemId === 1 && (
-            <div className="parent">
-              <p className={circleClass}></p>
-              <p className={lineRightClass}></p>
-              <p className="name"> {title} </p>
-            </div>
-          )}
-          {itemId !== 1 && itemId !== long && (
-            <div className="parent">
-              <p className={lineLeftClass}></p>
-              <p className={circleClass}> </p>
-              <p className={lineRightClass}></p>
-
-              <p className="name"> {title} </p>
-            </div>
-          )}
-          {itemId === long && (
-            <div className="parent">
-              <p className={lineLeftClass}></p>
-              <p className={circleClass}> </p>
-
-              <p className="name"> {title} </p>
-            </div>
-          )}
-        </div>
-            */}
-
-        {/* states.find((state) => (state.id===1).id )=== 1 */}
-
         {/* بدون شرط */}
         <div className="apiexample">
           <div className="parent">
@@ -457,7 +422,7 @@ export default class Toggle extends ReactComponent {
         displayKey={displayKey}
         dynamicCondition={dynamicCondition}
         translateButton={translateButton}
-        comp={this}
+        data={this.data}
         prefix={<i class={this.component.prefix}></i>}
         suffix={<i class={this.component.suffix}></i>}
         customStyle={this.component.customStyleForStep}
@@ -471,6 +436,8 @@ export default class Toggle extends ReactComponent {
         rightlineselect={this.component.rightlineselect}
         cond={this.component.cond}
         order={this.component.order}
+        instance={this}
+        form={this.root}
       />,
       element
     );

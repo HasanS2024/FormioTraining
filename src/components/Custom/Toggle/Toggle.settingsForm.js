@@ -102,36 +102,36 @@ export default (...extend) => {
           {
             key: "cond",
             type: "textarea",
-            label: "Custom JavaScript Logic For Condition Replaced ",
+            label:
+              "Custom JavaScript Logic For Condition Replaced....  example: state.id == 1 || state.id == 5 ",
             rows: 25,
             weight: 36,
             input: true,
-            placeholder:
-              "Enter your custom JavaScript logic here... example: state.id == 1 || state.id == 5",
+            placeholder: "Enter your custom JavaScript logic here...",
             editor: "ace",
             as: "javascript",
           },
           {
             key: "order",
             type: "textarea",
-            label: "Custom JavaScript Logic For Replaced Element",
+            label:
+              "Custom JavaScript Logic For Replaced Element... example:  state.username  = 'John'",
             rows: 25,
             weight: 36,
             input: true,
-            placeholder:
-              "Enter your custom JavaScript logic here... example:  state.username  = 'John'",
+            placeholder: "Enter your custom JavaScript logic here...",
             editor: "ace",
             as: "javascript",
           },
           {
             key: "customLogic",
             type: "textarea",
-            label: "Custom JavaScript Logic For Hidden Element",
+            label:
+              "Custom JavaScript Logic For Hidden Element... example: data.id==2;",
             rows: 25,
             weight: 36,
             input: true,
-            placeholder:
-              "Enter your custom JavaScript logic here... example: data.id==2;",
+            placeholder: "Enter your custom JavaScript logic here...",
             tooltip:
               "Enter custom JavaScript logic to handle specific behavior.",
             editor: "ace",
@@ -140,12 +140,12 @@ export default (...extend) => {
           {
             key: "customLogic2",
             type: "textarea",
-            label: "Custom JavaScript Logic For Active Element",
+            label:
+              "Custom JavaScript Logic For Active Element...example: item.id==3;",
             rows: 25,
             weight: 36,
             input: true,
-            placeholder:
-              "Enter your custom JavaScript logic here...example: item.id==3;",
+            placeholder: "Enter your custom JavaScript logic here...",
             tooltip:
               "Enter custom JavaScript logic to handle specific behavior.",
             editor: "ace",
