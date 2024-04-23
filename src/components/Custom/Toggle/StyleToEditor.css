@@ -1,0 +1,65 @@
+.circle {
+  width: 18px;
+  height: 18px;
+  background-color: gray;
+  border-radius: 100%;
+  position: absolute;
+  top: -5px;
+  left: 3;
+}
+.selected {
+  width: 18px;
+  height: 18px;
+  background-color: red;
+  border-radius: 100%;
+  position: absolute;
+  top: -5px;
+  left: 3;
+}
+
+.lineLeft {
+  position: absolute;
+  width: 80%;
+  border-bottom: 4px dashed gray;
+  top: 2px;
+  left: -25px;
+  margin-left: 2px;
+}
+.lineLeftselect {
+  position: absolute;
+  width: 80%;
+  border-bottom: 4px dashed red;
+  top: 2px;
+  left: -25px;
+  margin-left: 2px;
+}
+.lineRight {
+  position: absolute;
+  width: 80%;
+  border-bottom: 4px dashed gray;
+
+  top: 2px;
+  left: 25px;
+  margin-left: 2px;
+}
+.lineRightselect {
+  position: absolute;
+  width: 80%;
+  border-bottom: 4px dashed red;
+  top: 2px;
+  left: 25px;
+  margin-left: 2px;
+}
+
+.react-horizontal-scrolling-menu--item:first-child .lineLeft {
+  opacity: 0;
+}
+.react-horizontal-scrolling-menu--item:last-child .lineRight {
+  opacity: 0;
+}
+.react-horizontal-scrolling-menu--item:first-child .lineLeftselect {
+  opacity: 0;
+}
+.react-horizontal-scrolling-menu--item:last-child .lineRightselect {
+  opacity: 0;
+}

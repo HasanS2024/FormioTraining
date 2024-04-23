@@ -1,14 +1,12 @@
-import React from "react";
+import i18next from "i18next";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { ReactComponent } from "react-formio";
-import settingsForm from "./Toggle.settingsForm";
-import "./stepper.css";
-import i18next from "i18next";
-import { useEffect, useState, useCallback } from "react";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 import styled from "styled-jss";
-import evaluator from "./CustomEvaluator";
+import "./stepper.css";
+import settingsForm from "./Toggle.settingsForm";
 const ToggleCustomComp = ({
   apiUrl,
   displayKey,
@@ -53,7 +51,7 @@ const ToggleCustomComp = ({
         .catch((error) => console.error("Error fetching data:", error));
     }
   }, [apiUrl]);
-
+  // Replace
   useEffect(() => {
     if (states.length > 0) {
       states.map((state) => {
@@ -99,6 +97,8 @@ const ToggleCustomComp = ({
     );
   };
 
+  // Hidden function
+
   const meetsDynamicCondition = (state) => {
     if (typeof dynamicCondition === "function") {
       try {
@@ -119,7 +119,7 @@ const ToggleCustomComp = ({
     setLastStates(filteredStates);
   }, [states]);
 
-  // تابع النشاط
+  // Active function
   useEffect(() => {
     if (states.length > 0) {
       const x = customLogic2;
